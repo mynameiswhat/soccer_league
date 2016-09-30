@@ -2,7 +2,7 @@ import csv
 
 def extract_info():
 
-	#Outputs a dictionary with the name of the players as keys and information from the csv file as values
+	#Outputs a lit with the player information extracted from the csv file
 
     players=[]
     with open('soccer_players.csv') as csvfile:
