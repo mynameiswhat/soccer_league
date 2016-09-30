@@ -30,8 +30,8 @@ def identify_player_requirements(experienced, inexperienced):
 
 	#Identifies number of experienced and inexperienced player per team and rounds to nearest integer
 
-    required_experienced = round(len(experienced)/3)
-    required_inexperienced = round(len(inexperienced)/3)
+    required_experienced = round(len(experienced)/len(TEAMS))
+    required_inexperienced = round(len(inexperienced)/len(TEAMS))
     required_total = required_experienced + required_inexperienced
 
     return required_experienced, required_total
@@ -60,9 +60,9 @@ def build_team(team, experienced, inexperienced, required_experienced, required_
     TEAMS[team]=player_list
 
 
-def build_letters(team, player_and_guardians, practice_time):
+def write_letters(team, player_and_guardians, practice_time):
 
-	#Builds letters
+	#Writes letters
 
     for player in player_and_guardians:
         with open(player[0].lower().replace(' ', '_')+'.txt', 'w') as file:
@@ -82,7 +82,7 @@ def main():
     required_experienced, required_total = identify_player_requirements(experienced, inexperienced)
     for team in TEAMS:
         build_team(team, experienced, inexperienced, required_experienced, required_total)
-        build_letters(team, TEAMS[team], PRACTICE[team])
+        write_letters(team, TEAMS[team], PRACTICE[team])
 
 
 if __name__ == '__main__':
