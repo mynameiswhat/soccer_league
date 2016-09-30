@@ -4,11 +4,11 @@ def extract_info():
 
 	#Outputs a dictionary with the name of the players as keys and information from the csv file as values
 
-    players={}
+    players=[]
     with open('soccer_players.csv') as csvfile:
         reader = csv.DictReader(csvfile)
         for player in reader:
-            players[player['Name']]=player
+            players.append(player)
     return players
 
 
@@ -19,11 +19,10 @@ def identify_experienced_players(players):
     experienced=[]
     inexperienced=[]
     for player in players:
-        info = players[player]
-        if info['Soccer Experience'] == 'YES':
-            experienced.append((info['Name'],info['Guardian Name(s)']))
+        if player['Soccer Experience'] == 'YES':
+            experienced.append((player['Name'],player['Guardian Name(s)']))
         else:
-            inexperienced.append((info['Name'],info['Guardian Name(s)']))
+            inexperienced.append((player['Name'],player['Guardian Name(s)']))
     return experienced, inexperienced
             
 
